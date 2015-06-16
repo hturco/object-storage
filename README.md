@@ -1,23 +1,22 @@
-# openstack-storage [![NPM version](https://badge.fury.io/js/openstack-storage.png)](http://badge.fury.io/js/openstack-storage)
-A node.js client library for interacting with Openstack Storage (Swift)
+# object-storage [![NPM version](https://badge.fury.io/js/openstack-storage.png)](http://badge.fury.io/js/openstack-storage)
+A node.js client library for interacting with Object Storage (Swift)
 
 _Copyright 2012, FeedHenry Ltd. Licensed under the
 MIT license, please see the LICENSE file.  All rights reserved._
 
 ## Installation
-    npm install openstack-storage
+    npm install object-storage
 
 ## Example usage 1
     var async = require('async');
     var storage = require('storage');
-    var authenticate = require('authenticate');
     
     ## get an authentication function. config formats are described in lib/authenticate.js
     ## use one of these:
-    var authFn = async.apply(authenticate.getTokensKeystone, config); // for keystone auth
-    var authFn = async.apply(authenticate.getTokensNative, config); // for native auth (swauth or tempauth)
+    var authFn = async.apply(storage.authenticate.getTokensNative, config); // for native auth (swauth or tempauth)
+    var authFn = async.apply(storage.authenticate.getTokensKeystone, config); // option for keystone auth
 
-    var storageSwift = new storage.OpenStackStorage (authFn, function(err, res, tokens) {
+    var storageSwift = new storage.ObjectStorage (authFn, function(err, res, tokens) {
       console.log('Storage constructor - err: ', err, ', tokens: ', tokens);
       var containers = storageSwift.getContainers(function(err, containers) {
         console.log('getCOntainers - err: ', err, ', containers: ', containers);
@@ -40,9 +39,5 @@ MIT license, please see the LICENSE file.  All rights reserved._
 
 See the `examples` folder for more sample API usage.
 
-## Tests
-The tests use [mocha](http://visionmedia.github.com/mocha/) and require access to an [Openstack](http://openstack.org) compliant Identity/Storage service.  The tests load a config file called `testconfig.json` in the `config` directory, there is a sample provided as `testconfig-sample.json`, but the user credentials will have to be entered.
-The timeout for the tests has been specified at 10 seconds in the `package.json` file, to allow for testing against a slow remote server.
 
-    "test": "mocha --ui tdd --globals writeln --reporter spec --timeout 10000"
 
