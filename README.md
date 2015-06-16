@@ -1,11 +1,7 @@
-# object-storage [![NPM version](https://badge.fury.io/js/openstack-storage.png)](http://badge.fury.io/js/openstack-storage)
 A node.js client library for interacting with Object Storage (Swift)
 
 _Copyright 2012, FeedHenry Ltd. Licensed under the
 MIT license, please see the LICENSE file.  All rights reserved._
-
-## Installation
-    npm install object-storage
 
 ## Example usage 1
     var async = require('async');
